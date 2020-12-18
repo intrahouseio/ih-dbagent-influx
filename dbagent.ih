@@ -1,0 +1,6 @@
+{
+    "id":"influx",
+    "description":"Dbagent for InfluxDB",
+    "cross":true,
+	"version":"5.0.1"
+}

@@ -1,0 +1,43 @@
+{
+  "grid": [
+    { "id": "p1", "xs": 6, "class": "main", "table": "dbagent" },
+    { "id": "p2", "xs": 6, "class": "main", "table": "dbagent" },
+    { "id": "p3", "xs": 12, "class": "main", "table": "dbagentstateTable", "hide":"!data.p1.active", "height":"fill" }
+  ],
+  "spacing": 10,
+  "breadcrumbs": { "tree": "dbagents" },
+
+  "p1": [
+    { "prop": "title", "title": "", "type": "text",   "hide":"data.p1.active"},
+    { "prop": "active", "title": "Active", "type": "text", "hide":"1==1" }
+  ],
+  "p2": [
+    { "prop": "host", "title": "InfluxDB service host", "type": "input", "default":"127.0.0.1" },
+    { "prop": "port", "title": "InfluxDB service port", "type": "input", "default":"8086" },
+    { "prop": "database", "title": "Project database name", "type": "input", "default":"${project}" },
+    {
+      "prop": "activateButton",
+      "title": "Активировать эту БД для проекта",
+      "type": "button",
+      "command": "restartwithdbagent",
+      "param": "",
+      "hide":"data.p1.active"
+    }
+  ],
+  "p3": [
+    {
+      "title": "INFLUX",
+      "type": "table",
+      "prop": "dbagentstateTable",
+
+      "columns": [
+        { "prop": "name", "title": "$Name", "type": "text", "width": 150 },
+        { "prop": "state", "title": "Состояние", "type": "text", "width": 150 },
+        { "prop": "laststart", "title": "Время запуска", "type": "text", "width": 150 },
+        { "prop": "laststop", "title": "Время останова", "type": "text", "width": 150 },
+        { "prop": "uptime", "title": "Uptime", "type": "text", "width": 150 },
+        { "prop": "error", "title": "Ошибка", "type": "text", "width": 250 }
+      ]
+    }
+  ]
+}

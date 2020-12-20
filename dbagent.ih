@@ -2,6 +2,5 @@
     "id":"influx",
     "description":"Dbagent for InfluxDB",
     "cross":true,
-	"version":"5.0.3",
-    "opt":["host","port","database"]
+	"version":"5.0.4"
 }

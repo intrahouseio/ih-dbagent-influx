@@ -1,33 +1,36 @@
 {
   "grid": [
     { "id": "p1", "xs": 4, "class": "main", "table": "dbagentinfoTable" },
-    { "id": "p2", "xs": 8, "class": "main", "table": "dbagent" },
-    { "id": "p3", "xs": 12, "class": "main", "table": "dbagentstateTable", "hide":"!data.p2.active", "height":"fill" }
+    { "id": "p2", "xs": 4, "class": "main", "table": "dbagent" },
+    { "id": "p3", "xs": 4, "class": "main", "table": "dbagent" },
+    { "id": "p9", "xs": 12, "class": "main", "table": "dbagentstateTable", "hide": "!data.p2.active", "height": "fill" }
   ],
   "spacing": 10,
   "breadcrumbs": { "tree": "dbagents" },
 
   "p1": [
-    { "prop": "description", "title": "", "type": "text"},
-    { "prop": "version", "title": "$Version", "type": "text"},
-   
+    { "prop": "description", "title": "", "type": "text" },
+    { "prop": "version", "title": "$Version", "type": "text" },
+
     {
       "prop": "activateButton",
       "title": "Активировать эту БД для проекта",
       "type": "button",
       "command": "restartwithdbagent",
       "param": "",
-      "hide":"data.p2.active"
+      "hide": "data.p2.active"
     }
   ],
   "p2": [
-    { "prop": "active", "title": "Active", "type": "text", "hide":"1==1" },
-    { "prop": "host", "title": "InfluxDB service host", "type": "input", "default":"127.0.0.1" },
-    { "prop": "port", "title": "InfluxDB service port", "type": "input", "default":"8086" },
-    { "prop": "database", "title": "Project database name", "type": "input", "default":"${project}" }
-    
+    { "prop": "active", "title": "Active", "type": "text", "hide": "1==1" },
+    { "prop": "host", "title": "InfluxDB service host", "type": "input", "default": "127.0.0.1" },
+    { "prop": "port", "title": "InfluxDB service port", "type": "input", "default": "8086" }
   ],
   "p3": [
+    { "prop": "database", "title": "Имя базы данных проекта", "type": "input", "default": "${project}" },
+    { "prop": "loglevel", "title": "$LogLevel", "type": "droplist", "data": "loglevelList", "hide": "!data.p2.active" }
+  ],
+  "p9": [
     {
       "title": "INFLUX",
       "type": "table",
@@ -35,7 +38,7 @@
 
       "columns": [
         { "prop": "name", "title": "$Name", "type": "text", "width": 150 },
-        { "prop": "state", "title": "Состояние", "type": "text", "width": 150 },
+        { "prop": "state", "title": "Состояние", "type": "text", "width": 200 },
         { "prop": "laststart", "title": "Время запуска", "type": "text", "width": 150 },
         { "prop": "laststop", "title": "Время останова", "type": "text", "width": 150 },
         { "prop": "uptime", "title": "Uptime", "type": "text", "width": 150 },

@@ -18,13 +18,17 @@ let opt;
 try {
   opt = JSON.parse(process.argv[2]);
 } catch (e) {
-  console.log('WARN: dbagent influx - NO argv!')
+  opt = {};
 }
 
-const logfile = opt && opt.logfile ? opt.logfile : path.join(__dirname,'ih_influx.log');
+const logfile = opt.logfile || path.join(__dirname,'ih_influx.log');
+const loglevel = opt.loglevel || 0;
 
-logger.start(logfile);
-logger.log('Start dbagent influx');
+logger.start(logfile,loglevel);
+logger.log('Start dbagent influx. Loglevel: '+loglevel);
+
+delete opt.logfile;
+delete opt.loglevel;
 
 dbagent(process, opt, logger);
 
